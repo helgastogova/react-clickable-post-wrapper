@@ -16,7 +16,6 @@ dist
 *.swo
 *.bak
 *.tmp
-*.t??
 .DS_Store
 .directory
 .idea
