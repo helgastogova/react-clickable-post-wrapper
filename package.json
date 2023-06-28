@@ -1,0 +1,42 @@
+{
+  "name": "react-clickable-post-wrapper",
+  "version": "1.0.0",
+  "description": "React Post Wrapper is a flexible and versatile npm package that allows you to wrap any post element within an interactive container. The container, when clicked, navigates to a designated URL while also allowing for any links inside the wrapper to be clickable. Furthermore, it provides the ability to select text within the wrapper without triggering the link redirection.",
+  "keywords": [
+    "react",
+    "post",
+    "wrapper",
+    "clickable",
+    "clickable post wrapper"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/helgastogova/react-clickable-post-wrapper"
+  },
+  "author": "Olga Stogova <helgastogova@gmail.com>",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "*.d.ts",
+    "*.js"
+  ],
+  "scripts": {
+    "build": "rimraf dist && tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "compilerOptions": {
+    "outDir": "dist"
+  },
+  "dependencies": {
+    "classnames": "^2.3.2",
+    "react": "^18.2.0",
+    "rimraf": "^4.4.0",
+    "typescript": "^5.0.2"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.14",
+    "prettier": "2.8.8",
+    "typescript": "^5.1.5"
+  }
+}
