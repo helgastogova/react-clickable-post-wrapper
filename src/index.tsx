@@ -18,33 +18,34 @@ const PostWrapper: React.FC<PostWrapperProps> = React.forwardRef<HTMLDivElement,
       if (!myRef.current || !link) return;
 
       const handleClick = (e: MouseEvent) => {
-        const selection = window.getSelection();
-        const postLinkClicked =
-          e.target instanceof HTMLAnchorElement ||
-          (e.target as HTMLElement).parentElement instanceof HTMLAnchorElement;
+        const targetElement = e.target as HTMLElement;
 
-        const textIsSelected = selection && selection.toString().length > 0;
-        if (textIsSelected || postLinkClicked) {
-          return;
-        }
+        // Check if the clicked element or its parent is an anchor tag
+        const clickedOnAnchor = targetElement.tagName === "A" || targetElement.parentElement?.tagName === "A";
+        
+        // Check if the clicked element is inside the wrapper element
+        const clickedInsideWrapper = myRef.current?.contains(targetElement);
+        
+        if (!clickedOnAnchor && clickedInsideWrapper) {
+          // If clicked inside the wrapper and not on an anchor, prevent the default action
+          e.preventDefault();
 
-        // Check if onClick prop is defined and execute it
-        if (typeof onClick === 'function') {
-          onClick(e);
-        }
-
-        // If onClick prop was not handled or preventDefault was not called, navigate to the link
-        if (!e.defaultPrevented) {
+          // Check if onClick prop is defined and execute it
+          if (typeof onClick === 'function') {
+            onClick(e);
+          }
+        } else {
+          // If clicked on an anchor or outside the wrapper, navigate to the link
           target === "_blank"
             ? window.open(link, "_blank")
             : (window.location.href = link);
         }
       };
 
-      myRef.current.addEventListener("click", handleClick);
+      document.addEventListener("click", handleClick);
       
       return () => {
-        myRef.current?.removeEventListener("click", handleClick);
+        document.removeEventListener("click", handleClick);
       };
     }, [link, target, onClick]);
 
