@@ -11,11 +11,11 @@ This component is ideal for developers seeking to increase interactivity and use
 4. Allows text selection within the wrapper without triggering redirection.
 
 ## Installation
-`npm install react-post-wrapper`
+`npm install react-clickable-post-wrapper`
 
 ## Usage
 ```jsx
-import ReactPostWrapper from 'react-post-wrapper';
+import ReactPostWrapper from 'react-clickable-post-wrapper';
 
 // ...
 
