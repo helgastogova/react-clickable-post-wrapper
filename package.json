@@ -30,24 +30,12 @@
     "outDir": "dist"
   },
   "dependencies": {
-    "classnames": "^2.3.2",
     "react": "^18.2.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.6.4",
-    "@babel/core": "^7.22.5",
-    "@babel/plugin-transform-modules-commonjs": "^7.22.5",
-    "@babel/preset-env": "^7.22.5",
-    "@babel/preset-react": "^7.22.5",
     "@types/react": "^18.2.14",
     "prettier": "2.8.8",
     "rimraf": "^5.0.1",
     "typescript": "^5.1.5"
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-env",
-      "@babel/preset-react"
-    ]
   }
 }
