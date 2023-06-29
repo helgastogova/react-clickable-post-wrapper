@@ -16,6 +16,9 @@ This component is ideal for developers seeking to increase interactivity and use
 
 These features make the React Clickable Post Wrapper a powerful tool for creating interactive and clickable post elements within your React applications. It provides enhanced control over link behavior while maintaining a user-friendly and customizable interface.
 
+## Demo 
+[https://codesandbox.io/p/sandbox/gifted-http-wlh3yg?welcome=true](https://codesandbox.io/p/sandbox/gifted-http-wlh3yg?welcome=true)
+
 ## Installation
 `npm install react-clickable-post-wrapper`
 
