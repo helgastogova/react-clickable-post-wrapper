@@ -20,15 +20,48 @@ These features make the React Clickable Post Wrapper a powerful tool for creatin
 `npm install react-clickable-post-wrapper`
 
 ## Usage
+Here is an example of how you can use the React Clickable Post Wrapper component:
 ```jsx
-import ReactPostWrapper from 'react-clickable-post-wrapper';
+import React from "react";
+import PostWrapper from "react-clickable-post-wrapper";
 
-// ...
+const MyComponent = () => {
+  return (
+    <PostWrapper
+      className="post-wrapper"
+      link="https://example.com"
+      target="_blank"
+      onClick={(event) => {
+        console.log("Clicked!", event);
+      }}
+    >
+      <div>
+        <h1>My Post</h1>
+        <p>This is the content of my post.</p>
+        <a href="https://inner-link-example.com">This is a link inside your post</a>
+        <button onClick={() => console.log("Button clicked!")}>
+          Click me
+        </button>
+      </div>
+    </PostWrapper>
+  );
+};
 
-<ReactPostWrapper link="https://example.com" target="_blank">
-  <YourPostComponent />
-</ReactPostWrapper>
+export default MyComponent;
+```
 
+## Props
+The PostWrapper component accepts the following props:
 
+1. **className (optional):** A string representing the CSS class name for the wrapper container.
+2. **children (optional):** React nodes to be wrapped inside the container.
+3. **link (optional):** The URL to navigate to when the container is clicked.
+4. **target (optional):** The target attribute for the link. Can be one of "_blank", "_self", "_parent", or "_top". Default is "_self".
+5. **onClick (optional):** A function that will be called when the container is clicked. It receives the MouseEvent object as an argument.
+
+Note: If both onClick and individual click handlers are defined on child elements, the onClick prop takes precedence and prevents the default link navigation when handled.
+
+## License
+React Clickable Post Wrapper is released under the MIT License.
 
 
