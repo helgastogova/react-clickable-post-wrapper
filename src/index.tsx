@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import cx from "classnames";
 
 type PostWrapperProps = {
   className?: string;
@@ -10,9 +9,9 @@ type PostWrapperProps = {
 };
 
 const PostWrapper: React.FC<PostWrapperProps> = React.forwardRef<HTMLDivElement, PostWrapperProps>(
-  ({ className, children, link, target = "_self", onClick }, ref) => {
-
+  ({ className, children, link, target = "_self", onClick }) => {
     const wrapperRef = useRef<HTMLDivElement | null>(null);
+    const clickHandledRef = useRef(false);
 
     useEffect(() => {
       if (!wrapperRef.current || !link) return;
@@ -21,12 +20,13 @@ const PostWrapper: React.FC<PostWrapperProps> = React.forwardRef<HTMLDivElement,
         const selection = window.getSelection();
         const clickedElement = e.target as HTMLElement;
         const postLinkClicked = clickedElement.closest("a") !== null;
-        const isChildClicked = wrapperRef.current?.contains(clickedElement);
+        const isChildClicked = wrapperRef.current?.contains(clickedElement) && Boolean(clickedElement?.onclick);
 
         const textIsSelected = selection && selection.toString().length > 0;
 
         let hasParentClickHandler = false;
         let parentElement = clickedElement.parentElement;
+
         while (parentElement) {
           if (parentElement.onclick) {
             hasParentClickHandler = true;
@@ -35,36 +35,33 @@ const PostWrapper: React.FC<PostWrapperProps> = React.forwardRef<HTMLDivElement,
           parentElement = parentElement.parentElement;
         }
 
-        if (textIsSelected || postLinkClicked || (isChildClicked && hasParentClickHandler)) {
-          return;
+        if (textIsSelected || postLinkClicked || (isChildClicked && hasParentClickHandler)) return;
+
+        if (!isChildClicked) {
+          if (typeof onClick === "function") {
+            onClick(e);
+            clickHandledRef.current = true;
+          }
+
+          target === "_blank" ? window.open(link, "_blank") : (window.location.href = link);
         }
 
-        // Check if onClick prop is defined and execute it
-        if (typeof onClick === 'function') {
-          onClick(e);
-        }
-
-        // If onClick prop was not handled or preventDefault was not called, navigate to the link
-        if (!e.defaultPrevented) {
-          target === "_blank"
-            ? window.open(link, "_blank")
-            : (window.location.href = link);
-        }
+        clickHandledRef.current = false; // Reset the clickHandledRef for the next click
       };
 
       wrapperRef.current.addEventListener("click", handleClick);
-      
+
       return () => {
         wrapperRef.current?.removeEventListener("click", handleClick);
       };
     }, [link, target, onClick]);
 
     return (
-      <div ref={wrapperRef} className={cx(className)}>
+      <div ref={wrapperRef} className={className}>
         {children}
       </div>
     );
-  }
+  },
 );
 
 PostWrapper.defaultProps = {
