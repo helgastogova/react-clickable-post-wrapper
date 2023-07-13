@@ -4,6 +4,8 @@ React Clickable Post Wrapper is a flexible and versatile npm package that allows
 
 This component is ideal for developers seeking to increase interactivity and user experience in their React applications, particularly in scenarios where posts or feed items are used.
 
+**hackernoon article about creating this component** https://hackernoon.com/building-a-post-component-with-links-onclick-handling-text-selection-and-clickability-anywhere
+
 ## Features
 1. **Flexible and versatile:** Wrap any post element within an interactive container, providing enhanced functionality.
 2. **Clickable links:** Navigate to a designated URL when the container is clicked, using the link prop.
